@@ -1,6 +1,6 @@
 FormTricks::Application.routes.draw do
   resources :users
-
+  #resources :refresh_partial
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -15,7 +15,9 @@ FormTricks::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
+  match 'refresh_partial' => 'refresh_partial#index', :as => "refresh_index"
+  #match ':controller/:action' 
+  match ':controller(/:action)(.:format)'
   # Sample resource route with options:
   #   resources :products do
   #     member do

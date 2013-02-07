@@ -1,0 +1,16 @@
+To see Dynamic changes modify database. "No need to refresh view page :)"
+
+<div class="dynamic"><%= render partial: 'dynamic' %></div>
+
+
+<script>
+	
+$(document).ready(
+     function() {
+      setInterval(function() {
+        $('.dynamic').load('/refresh_partial/load');
+    }, 5000);
+});
+
+	
+</script>
