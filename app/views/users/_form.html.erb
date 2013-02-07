@@ -1,0 +1,39 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </div>
+  <div class="field">
+    <%= f.label :preferences %><br />
+    <b>Activity</b>
+    <% %w( sun mon tue wed thu fri sat ).each do |day| %>
+    <div style="padding: 2px 2px 2px 2em;">
+    <%= f.check_box :preferences,{ :multiple => true }, day, Array(@user.preferences).include?(day) %> 
+    <%= { "sun" => "Sunday", "mon" => "Monday", "tue" => "Tuesday", "wed" => "Wednesday", "thu" => "Thursday", "fri" => "Friday", "sat" => "Saturday" }[day] %></div>
+    <% end %>
+        
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
