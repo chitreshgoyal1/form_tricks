@@ -28,7 +28,7 @@
     <b>Activity</b>
     <% %w( sun mon tue wed thu fri sat ).each do |day| %>
     <div style="padding: 2px 2px 2px 2em;">
-    <%= f.check_box :preferences,{ :multiple => true }, day, Array(@user.preferences).include?(day) %> 
+    <%= check_box_tag "user[preferences][]", day, Array(@user.preferences).include?(day) %> 
     <%= { "sun" => "Sunday", "mon" => "Monday", "tue" => "Tuesday", "wed" => "Wednesday", "thu" => "Thursday", "fri" => "Friday", "sat" => "Saturday" }[day] %></div>
     <% end %>
         
