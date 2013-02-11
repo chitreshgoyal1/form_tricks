@@ -16,6 +16,10 @@ FormTricks::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   match 'refresh_partial' => 'refresh_partial#index', :as => "refresh_index"
+  match '/next_if(.:format)' => 'users#next_if', :as => "next_if"
+  match '/clone(.:format)' => 'users#clone', :as => "clone"
+  match '/unlock(.:format)' => 'users#unlock', :as => "unlock"
+  match '/isrunning(.:format)' => 'users#isrunning', :as => "isrunning"
   #match ':controller/:action' 
   match ':controller(/:action)(.:format)'
   # Sample resource route with options:

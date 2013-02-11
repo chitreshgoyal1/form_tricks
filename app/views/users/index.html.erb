@@ -1,5 +1,5 @@
 <h1>Listing users</h1>
-
+<%= link_to 'New User', new_user_path %><br />
 <table>
   <tr>
     <th>Name</th>
@@ -24,7 +24,9 @@
 
 <br />
 
-<%= link_to 'New User', new_user_path %>
 
+<%= link_to 'See Dynamic Partial', refresh_index_path %> Auto Reload Partial<br />
 
-<%= link_to 'See Refresh Partial', refresh_index_path %>
+<%= link_to 'Next if', next_if_path %><br />
+
+<%= link_to 'Lock', clone_path %> Process.pid is_running or not

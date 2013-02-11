@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @users }
@@ -14,7 +13,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -25,7 +23,6 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -41,7 +38,6 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
-
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -57,7 +53,8 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-
+    @user.update_attribute(:count, @user.count.to_i+1)
+    #render :text=>'<pre>'+@user.to_yaml and return true
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -74,10 +71,56 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
   end
+  
+  def next_if
+    render :partial => "next_if"
+  end
+
+
+##--------------------------------------------------------------------##  
+  def isrunning
+    pids = `ps -e | awk '{print $1}'`
+    pid_arr = Array.new
+    pids.each_line{|s| pid_arr << s.chomp}
+    if pid_arr.include?(@@pid)
+      return true
+    else
+      return false  
+    end
+  end
+  
+  def clone
+    lock_file = "public/robots.txt"
+    if(File.exist?(lock_file))
+      @@pid = File.open(lock_file,"r").read
+      if self.isrunning
+        puts "pid #{@@pid} is already running"
+        
+        return false
+      else
+        puts "Previous job died"
+      end
+    end  
+    newpid = Process.pid
+    file = File.open(lock_file,"w")
+    file.write("#{newpid}")
+    file.close
+    puts "pid #{newpid} processing the job..."
+    return newpid
+    #render :text=>'<pre>'+newpid.to_yaml and return true
+   end
+  
+  def unlock
+    lock_file = "public/robots.txt"
+    if File.exist?(lock_file)
+      File.delete(lock_file)
+      return true
+    end
+  end  
+  
 end
