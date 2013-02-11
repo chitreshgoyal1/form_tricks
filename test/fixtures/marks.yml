@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  subject_id: 1
+  student_id: 1
+  m_marks: 1.5
+  obtain_marks: 1.5
+  grade: MyString
+  remarks: MyText
+
+two:
+  subject_id: 1
+  student_id: 1
+  m_marks: 1.5
+  obtain_marks: 1.5
+  grade: MyString
+  remarks: MyText

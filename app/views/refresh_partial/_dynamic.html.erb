@@ -1,4 +1,32 @@
-Name: <%= @user.name %>
+Reloaded: <%= @user.count %>
+<br /><br />
 
+<pre>
+<h2>Controller:</h2>	
+class RefreshPartialController < ApplicationController
+   def load
+     @user = User.find_by_id(1)
+     @user.update_attribute(:count, @user.count.to_i+1)
+      render :partial => "dynamic"
+   end
+end
 
+---------------------------------------------------------------------------
+<h2>index.html.erb</h2>
+To see Dynamic changes modify database. "No need to refresh view page :)"
+<div class="dynamic">&lt;%= render partial: 'dynamic' %&gt;</div>
 
+&lt;script&gt;
+$(document).ready(
+     function() {
+      setInterval(function() {
+        $('.dynamic').load('/refresh_partial/load');
+    }, 5000);
+});
+&lt;/script&gt;
+
+---------------------------------------------------------------------------
+<h2>Routes:</h2>
+match 'refresh_partial' => 'refresh_partial#index', :as => "refresh_index"
+
+</pre>

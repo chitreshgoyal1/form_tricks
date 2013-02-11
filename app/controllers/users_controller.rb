@@ -53,8 +53,6 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
-    @user.update_attribute(:count, @user.count.to_i+1)
-    #render :text=>'<pre>'+@user.to_yaml and return true
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
