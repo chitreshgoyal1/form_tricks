@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130211121125) do
+ActiveRecord::Schema.define(:version => 20130214100527) do
 
   create_table "marks", :force => true do |t|
     t.integer  "subject_id"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20130211121125) do
     t.text     "remarks"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+  end
+
+  create_table "photos", :force => true do |t|
+    t.string   "name"
+    t.integer  "usr_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "students", :force => true do |t|
@@ -44,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130211121125) do
     t.datetime "updated_at",  :null => false
     t.boolean  "active"
     t.integer  "count"
+    t.integer  "ph_id"
   end
 
 end

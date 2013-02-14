@@ -1,0 +1,10 @@
+<%= debug @users.first.photos %>
+
+<h3>User model:</h3>
+
+has_many :photos, :foreign_key => 'usr_id', :primary_key => 'ph_id'
+
+
+<h3>Photo model:</h3>
+
+belongs_to :user, :primary_key=>"id", :foreign_key=>"usr_id"

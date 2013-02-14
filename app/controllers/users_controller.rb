@@ -79,6 +79,10 @@ class UsersController < ApplicationController
     render :partial => "next_if"
   end
 
+  def pmap
+    @users = User.all
+    render :partial => "pmap"
+  end
 
 ##--------------------------------------------------------------------##  
   def isrunning
@@ -93,7 +97,7 @@ class UsersController < ApplicationController
   end
   
   def clone
-    lock_file = "public/robots.txt"
+    lock_file = "assets/robots.txt"
     if(File.exist?(lock_file))
       @@pid = File.open(lock_file,"r").read
       if self.isrunning

@@ -18,6 +18,7 @@ FormTricks::Application.routes.draw do
   match 'refresh_partial' => 'refresh_partial#index', :as => "refresh_index"
   match '/next_if(.:format)' => 'users#next_if', :as => "next_if"
   match '/clone(.:format)' => 'users#clone', :as => "clone"
+  match '/pmap(.:format)' => 'users#pmap', :as => "pmap"
   match '/unlock(.:format)' => 'users#unlock', :as => "unlock"
   match '/isrunning(.:format)' => 'users#isrunning', :as => "isrunning"
   #match ':controller/:action' 

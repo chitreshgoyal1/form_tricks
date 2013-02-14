@@ -23,7 +23,9 @@
 </table>
 
 <br />
-
+<% s = "123 easy street, Brunswick,30230,VIC,Australia" %>
+<% a = s.split(',')%>
+<%= a[1]%>
 
 <%= link_to 'See Dynamic Partial', refresh_index_path %> Auto Reload Partial<br />
 
@@ -31,4 +33,7 @@
 
 <%= link_to 'Lock', clone_path %> Process.pid is_running or not<br />
 
-<%= link_to 'Multiple rows in a model in form'%>
+<%= link_to 'Multiple rows in a model in form'%><br />
+
+<%= link_to 'map non primary key as foreign key', pmap_path %>
+
