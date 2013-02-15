@@ -21,6 +21,7 @@ FormTricks::Application.routes.draw do
   match '/pmap(.:format)' => 'users#pmap', :as => "pmap"
   match '/unlock(.:format)' => 'users#unlock', :as => "unlock"
   match '/isrunning(.:format)' => 'users#isrunning', :as => "isrunning"
+  match '/equilibrium(.:format)' => 'users#equilibrium', :as => "equilibrium"
   #match ':controller/:action' 
   match ':controller(/:action)(.:format)'
   # Sample resource route with options:

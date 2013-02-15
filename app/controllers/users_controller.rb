@@ -125,4 +125,7 @@ class UsersController < ApplicationController
     end
   end  
   
+  def equilibrium
+    render :partial => "equilibrium"
+  end
 end
